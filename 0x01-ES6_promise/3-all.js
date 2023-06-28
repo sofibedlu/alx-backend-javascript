@@ -4,7 +4,7 @@ export default function handleProfileSignup() {
   uploadPhoto()
     .then((data) => data.body)
     .then((value) => {
-      createUser().then((obj) => {
+      return createUser().then((obj) => {
         console.log(`${value} ${obj.firstName} ${obj.lastName}`);
       });
     })
