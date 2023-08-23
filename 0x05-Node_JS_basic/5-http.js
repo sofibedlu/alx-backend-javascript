@@ -52,15 +52,18 @@ const app = http.createServer(async (req, res) => {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     const databasePath = process.argv[2];
-
-    try {
-      const output = await countStudents(databasePath);
-      res.write('This is the list of our students\n');
-      res.end(output);
-    } catch (error) {
-      res.statusCode = 404;
-      res.end(error.message);
+    if (!databasePath) {
+      res.end('Error: Database path is missing\n');
+      return;
     }
+    countStudents(databasePath)
+      .then((output) => {
+        res.write('This is the list of our students\n');
+        res.end(output);
+      })
+      .catch((error) => {
+        res.end(error.message);
+      });
   } else {
     res.end('Not found\n');
   }
