@@ -62,6 +62,7 @@ const app = http.createServer(async (req, res) => {
         res.end(output);
       })
       .catch((error) => {
+        res.write('This is the list of our students\n');
         res.end(error.message);
       });
   } else {
