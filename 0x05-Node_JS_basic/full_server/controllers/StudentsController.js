@@ -10,10 +10,13 @@ class StudentsController {
 
       const fieldNames = Object.keys(studentData).sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
 
-      fieldNames.forEach((field) => {
+      fieldNames.forEach((field, index) => {
         const count = studentData[field].length;
         const list = studentData[field].join(', ');
         res.write(`Number of students in ${field}: ${count}. List: ${list}`);
+        if (index !== fieldNames.length - 1) {
+          res.write('\n');
+        }
       });
 
       res.end();
