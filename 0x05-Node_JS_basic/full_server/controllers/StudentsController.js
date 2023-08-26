@@ -21,7 +21,6 @@ class StudentsController {
 
       res.end();
     } catch (error) {
-      res.write('This is the list of our students\n');
       res.writeHead(500, { 'Content-Type': 'text/plain' });
       res.end('Cannot load the database');
     }
