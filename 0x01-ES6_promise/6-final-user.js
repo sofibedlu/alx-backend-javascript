@@ -8,16 +8,12 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
   ];
 
   return Promise.all(promises)
-    .then((results) => {
-      return results.map((result) => ({
-       status: 'fulfilled',
-       value: result,
-      }));
-    });
-    .catch((errors) => {
-      return errors.map(error => ({
-        status: 'rejected',
-        value: error,
-      }));
-    });
+    .then((results) => results.map((result) => ({
+      status: 'fulfilled',
+      value: result,
+    })))
+    .catch((error) => [{
+      status: 'rejected',
+      value: error,
+    }]);
 }
