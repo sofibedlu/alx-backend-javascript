@@ -8,7 +8,7 @@ async function handleProfileSignup(firstName, lastName, fileName) {
     results.push({ status: 'fulfilled', value: user });
     await uploadPhoto(fileName);
   } catch (err) {
-    results.push({ status: 'rejected', value: `Error: ${fileName} cannot be processed` });
+    results.push({ status: 'rejected', value: err.message });
   }
   return results;
 }
